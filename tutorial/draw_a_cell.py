@@ -46,7 +46,7 @@ def draw_lattice(save_fig=False, show_fig=False):
 
     plt.tight_layout()
     if save_fig:
-        plt.savefig('../plots/tutorial/ex_01.png', dpi=300)
+        plt.savefig('../plots/tutorial/eg_01.png', dpi=300)
     if show_fig:
         plt.show()
 
@@ -123,7 +123,7 @@ def draw_structure(save_fig=False, show_fig=False):
 
     plt.tight_layout()
     if save_fig:
-        plt.savefig('../plots/tutorial/ex_02.png', dpi=300)
+        plt.savefig('../plots/tutorial/eg_02.png', dpi=300)
     if show_fig:
         plt.show()
 
@@ -203,7 +203,7 @@ def draw_structure_w_edges(save_fig=False, show_fig=False):
         )
 
     if save_fig:
-        plt.savefig('../plots/tutorial/ex_03.png', dpi=300)
+        plt.savefig('../plots/tutorial/eg_03.png', dpi=300)
     if show_fig:
         plt.show()
 
@@ -315,7 +315,7 @@ def draw_structure_w_marks(save_fig=False, show_fig=False):
         )
 
     if save_fig:
-        plt.savefig('../plots/tutorial/ex_04.png', dpi=300)
+        plt.savefig('../plots/tutorial/eg_04.png', dpi=300)
     if show_fig:
         plt.show()
 
