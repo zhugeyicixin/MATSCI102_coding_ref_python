@@ -83,3 +83,5 @@ def get_line_intersection(
 def get_polygon_area(vertices):
     polygon_1 = Polygon(*vertices)
     return float(polygon_1.area)
+
+
