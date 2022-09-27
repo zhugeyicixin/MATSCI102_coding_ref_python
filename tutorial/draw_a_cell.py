@@ -4,7 +4,7 @@ from pprint import pprint
 
 from utils.lattice_utils import get_lattice_2D
 from utils.plot_utils import fig_from_fig_or_none
-from utils.plot_utils import plot_an_edge
+from utils.plot_utils import plot_a_line
 
 
 def draw_lattice(save_fig=False, show_fig=False):
@@ -85,14 +85,14 @@ def draw_structure(save_fig=False, show_fig=False):
     ax = fig.add_subplot(111)
 
     # plot points
-    # ax.plot(
-    #     lattice_points[:, 0],
-    #     lattice_points[:, 1],
-    #     linestyle='none',
-    #     marker='o',
-    #     markersize=5,
-    #     color='tab:gray',
-    # )
+    ax.plot(
+        lattice_points[:, 0],
+        lattice_points[:, 1],
+        linestyle='none',
+        marker='o',
+        markersize=5,
+        color='tab:gray',
+    )
 
     ax.plot(
         site_1_points[:, 0],
@@ -179,25 +179,25 @@ def draw_structure_w_edges(save_fig=False, show_fig=False):
         'color': 'tab:gray',
     }
     for i in range(len(edge_1_1_points)):
-        plot_an_edge(
-            site_1=edge_1_1_points[i],
-            site_2=edge_1_2_points[i],
+        plot_a_line(
+            point_1=edge_1_1_points[i],
+            point_2=edge_1_2_points[i],
             ax=ax,
             **edge_vis_config,
         )
 
     for i in range(len(edge_2_1_points)):
-        plot_an_edge(
-            site_1=edge_2_1_points[i],
-            site_2=edge_2_2_points[i],
+        plot_a_line(
+            point_1=edge_2_1_points[i],
+            point_2=edge_2_2_points[i],
             ax=ax,
             **edge_vis_config,
         )
 
     for i in range(len(edge_3_1_points)):
-        plot_an_edge(
-            site_1=edge_3_1_points[i],
-            site_2=edge_3_2_points[i],
+        plot_a_line(
+            point_1=edge_3_1_points[i],
+            point_2=edge_3_2_points[i],
             ax=ax,
             **edge_vis_config,
         )
@@ -242,27 +242,27 @@ def draw_structure_w_marks(save_fig=False, show_fig=False):
         'color': 'tab:gray',
     }
     origin = np.array((0.0, 0.0))
-    plot_an_edge(
-        site_1=origin,
-        site_2=vec_a,
+    plot_a_line(
+        point_1=origin,
+        point_2=vec_a,
         ax=ax,
         **edge_vis_config,
     )
-    plot_an_edge(
-        site_1=origin,
-        site_2=vec_b,
+    plot_a_line(
+        point_1=origin,
+        point_2=vec_b,
         ax=ax,
         **edge_vis_config,
     )
-    plot_an_edge(
-        site_1=vec_a,
-        site_2=vec_a+vec_b,
+    plot_a_line(
+        point_1=vec_a,
+        point_2=vec_a+vec_b,
         ax=ax,
         **edge_vis_config,
     )
-    plot_an_edge(
-        site_1=vec_b,
-        site_2=vec_a+vec_b,
+    plot_a_line(
+        point_1=vec_b,
+        point_2=vec_a+vec_b,
         ax=ax,
         **edge_vis_config,
     )
@@ -323,20 +323,20 @@ def draw_structure_w_marks(save_fig=False, show_fig=False):
 
 
 if __name__ == '__main__':
-    fig, ax = draw_lattice(
-        save_fig=True,
-        show_fig=True,
-    )
+    # fig, ax = draw_lattice(
+    #     save_fig=True,
+    #     show_fig=True,
+    # )
 
-    fig, ax = draw_structure(
-        save_fig=True,
-        show_fig=True,
-    )
+    # fig, ax = draw_structure(
+    #     save_fig=True,
+    #     show_fig=True,
+    # )
 
-    fig, ax = draw_structure_w_edges(
-        save_fig=True,
-        show_fig=True,
-    )
+    # fig, ax = draw_structure_w_edges(
+    #     save_fig=True,
+    #     show_fig=True,
+    # )
 
     fig, ax = draw_structure_w_marks(
         save_fig=True,

@@ -21,15 +21,28 @@ def fig_from_fig_or_none(
     return fig, ax
 
 
-def plot_an_edge(
-    site_1: np.ndarray,
-    site_2: np.ndarray,
+def plot_a_point(
+    point: np.ndarray,
     ax: plt.Axes,
-    **kwargs
+    **kwargs,
 ):
     ax.plot(
-        [site_1[0], site_2[0]],
-        [site_1[1], site_2[1]],
-        **kwargs
+        point[0],
+        point[1],
+        **kwargs,
     )
+
+
+def plot_a_line(
+    point_1: np.ndarray,
+    point_2: np.ndarray,
+    ax: plt.Axes,
+    **kwargs,
+):
+    ax.plot(
+        [point_1[0], point_2[0]],
+        [point_1[1], point_2[1]],
+        **kwargs,
+    )
+
 
