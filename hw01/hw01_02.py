@@ -11,6 +11,11 @@ from utils.constants import NEAR_ZERO
 from utils.plot_utils import fig_from_fig_or_none
 
 
+__author__ = 'Tanjin He'
+__maintainer__ = 'Tanjin He'
+__email__ = 'tanjin_he@berkeley.edu'
+
+
 def plot_2b(save_fig=False, show_fig=False):
     vec_a1 = np.array((-0.35, -0.61))
     vec_b1 = np.array((0.71, 0.0))

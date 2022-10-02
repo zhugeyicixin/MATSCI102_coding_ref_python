@@ -4,6 +4,11 @@ from pprint import pprint
 from typing import Optional
 
 
+__author__ = 'Tanjin He'
+__maintainer__ = 'Tanjin He'
+__email__ = 'tanjin_he@berkeley.edu'
+
+
 def get_lattice_2D(
     vec_a: np.ndarray,
     vec_b: np.ndarray,

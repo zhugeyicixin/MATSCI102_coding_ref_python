@@ -7,6 +7,11 @@ from utils.plot_utils import fig_from_fig_or_none
 from utils.plot_utils import plot_a_line
 
 
+__author__ = 'Tanjin He'
+__maintainer__ = 'Tanjin He'
+__email__ = 'tanjin_he@berkeley.edu'
+
+
 def draw_lattice(save_fig=False, show_fig=False):
     vec_a = np.array((-0.5, -np.sqrt(3)/2))*2.5
     vec_b = np.array((1.0, 0.0))*2.5

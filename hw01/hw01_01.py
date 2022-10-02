@@ -11,6 +11,11 @@ from utils.constants import NEAR_ZERO
 from utils.plot_utils import fig_from_fig_or_none
 
 
+__author__ = 'Tanjin He'
+__maintainer__ = 'Tanjin He'
+__email__ = 'tanjin_he@berkeley.edu'
+
+
 def plot_1a(save_fig=False, show_fig=False):
 
     range_x = (-8, 8)

@@ -6,6 +6,11 @@ from typing import (
 import numpy as np
 
 
+__author__ = 'Tanjin He'
+__maintainer__ = 'Tanjin He'
+__email__ = 'tanjin_he@berkeley.edu'
+
+
 def fig_from_fig_or_none(
     fig: Optional[plt.Figure] = None,
     ax: Optional[plt.Axes] = None,

@@ -8,6 +8,11 @@ from utils.plot_utils import plot_a_point
 from utils.plot_utils import plot_a_line
 
 
+__author__ = 'Tanjin He'
+__maintainer__ = 'Tanjin He'
+__email__ = 'tanjin_he@berkeley.edu'
+
+
 def plot_2a(save_fig=False, show_fig=False):
     # plotting params
     range_a = (-5, 5)
