@@ -440,10 +440,6 @@ def plot_2c(save_fig=False, show_fig=False):
         fontweight='bold',
         color=vec_color,
         )
-
-    # add XRD
-
-
     ax.arrow(
         origin[0],
         origin[1],
@@ -466,6 +462,7 @@ def plot_2c(save_fig=False, show_fig=False):
         color=vec_color,
         )
 
+    # add XRD
     vis_config_Cl = {
         'color': 'tab:green',
         'linestyle': 'none',

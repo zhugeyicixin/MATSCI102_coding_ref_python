@@ -2,6 +2,7 @@ from matplotlib import pyplot as plt
 from typing import (
     Union,
     Optional,
+    List,
 )
 import numpy as np
 
@@ -51,3 +52,31 @@ def plot_a_line(
     )
 
 
+def get_fill_range_2D(curves: List[np.ndarray]):
+    """
+
+    :param curves:
+    :return:
+    """
+    pts = np.concatenate(curves)
+    mapping_x_range = {}
+    for pt in pts:
+        if pt[0] not in mapping_x_range:
+            mapping_x_range[pt[0]] = {
+                'min': pt[1],
+                'max': pt[1],
+            }
+        if pt[1] < mapping_x_range[pt[0]]['min']:
+            mapping_x_range[pt[0]]['min'] = pt[1]
+        if pt[1] > mapping_x_range[pt[0]]['max']:
+            mapping_x_range[pt[0]]['max'] = pt[1]
+
+    pts_clean = sorted(
+        mapping_x_range.items(),
+        key=lambda pt: pt[0]
+    )
+    xs = [pt[0] for pt in pts_clean]
+    y1s = [pt[1]['min'] for pt in pts_clean]
+    y2s = [pt[1]['max'] for pt in pts_clean]
+
+    return xs, y1s, y2s
