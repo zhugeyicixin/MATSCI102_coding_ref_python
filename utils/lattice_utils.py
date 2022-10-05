@@ -90,3 +90,20 @@ def get_polygon_area(vertices):
     return float(polygon_1.area)
 
 
+def get_reciprocal_vectors_2D(
+    vec_a: np.ndarray,
+    vec_b: np.ndarray,
+    scale_factor=1.0
+):
+    ...
+    cross_bc = np.array((vec_b[1], -vec_b[0]))
+    reciprocal_a = (
+        2*np.pi*scale_factor**2
+        *cross_bc/np.dot(vec_a, cross_bc)
+    )
+    cross_ca = np.array((-vec_a[1], vec_a[0]))
+    reciprocal_b = (
+        2 * np.pi * scale_factor ** 2
+        * cross_ca / np.dot(vec_b, cross_ca)
+    )
+    return reciprocal_a, reciprocal_b
