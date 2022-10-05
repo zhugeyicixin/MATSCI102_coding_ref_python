@@ -263,14 +263,14 @@ def draw_cube_stereogram_1(save_fig=False, show_fig=False):
         show_fig=False,
     )
     areas_to_paint = [
-        'origin_4_47',
-        'origin_4_45',
-        'origin_5_45',
-        'origin_5_56',
-        'origin_6_56',
-        'origin_6_67',
-        'origin_7_67',
-        'origin_7_47',
+        '4_47_4567',
+        '4_45_4567',
+        '5_45_4567',
+        '5_56_4567',
+        '6_56_4567',
+        '6_67_4567',
+        '7_67_4567',
+        '7_47_4567',
         '4_47_2347',
         '4_34_2347',
         '7_47_2347',
@@ -432,14 +432,14 @@ def draw_cube_stereogram_4(save_fig=False, show_fig=False):
         show_fig=False,
     )
     areas_to_paint = [
-        'origin_3_23',
-        'origin_3_03',
-        'origin_0_03',
-        'origin_0_01',
-        'origin_1_01',
-        'origin_1_12',
-        'origin_2_12',
-        'origin_2_23',
+        '3_23_0123',
+        '3_03_0123',
+        '0_03_0123',
+        '0_01_0123',
+        '1_01_0123',
+        '1_12_0123',
+        '2_12_0123',
+        '2_23_0123',
         '3_34_0345',
         '3_03_0345',
         '0_03_0345',
@@ -485,6 +485,98 @@ def draw_cube_stereogram_4(save_fig=False, show_fig=False):
     return fig, ax_1, ax_2
 
 
+
+def draw_cube_stereogram_5(save_fig=False, show_fig=False):
+
+    # start plot
+    fig, ax_1, ax_2 = draw_cube_stereogram_framework(
+        save_fig=False,
+        show_fig=False,
+    )
+    points_to_paint = list(filter(
+        lambda x: len(set(x)&{'0', '1', '2', '3'})/len(x) < 1,
+        stereogram_1.important_points
+    ))
+
+    all_colors = plt.colormaps['tab20'].colors[: len(points_to_paint)]
+
+    # paint on cube
+    for i, pt in enumerate(points_to_paint):
+        ax_1.plot(
+            cube_1.important_points[pt][0],
+            cube_1.important_points[pt][1],
+            cube_1.important_points[pt][2],
+            'X',
+            color=all_colors[i],
+            markersize=50,
+        )
+
+    # paint on stereogram
+    for i, pt in enumerate(points_to_paint):
+        ax_2.plot(
+            stereogram_1.important_points[pt][0],
+            stereogram_1.important_points[pt][1],
+            'X',
+            color=all_colors[i],
+            markersize=50,
+        )
+
+    if save_fig:
+        plt.savefig('../plots/tutorial/cube_stereogram_5.png', dpi=300)
+    if show_fig:
+        plt.show()
+
+    return fig, ax_1, ax_2
+
+
+
+def draw_cube_stereogram_6(save_fig=False, show_fig=False):
+
+    # start plot
+    fig, ax_1, ax_2 = draw_cube_stereogram_framework(
+        save_fig=False,
+        show_fig=False,
+    )
+    points_to_paint = list(filter(
+        lambda x: len(set(x)&{'0', '1', '2', '3'})/len(x) == 1,
+        stereogram_1.important_points
+    ))
+
+    all_colors = plt.colormaps['tab20'].colors[: len(points_to_paint)]
+
+    # paint on cube
+    for i, pt in enumerate(points_to_paint):
+        ax_1.plot(
+            cube_1.important_points[pt][0],
+            cube_1.important_points[pt][1],
+            cube_1.important_points[pt][2],
+            'o',
+            color=all_colors[i],
+            markersize=30,
+            fillstyle='none',
+            markeredgewidth=5,
+        )
+
+    # paint on stereogram
+    for i, pt in enumerate(points_to_paint):
+        ax_2.plot(
+            stereogram_1.important_points[pt][0],
+            stereogram_1.important_points[pt][1],
+            'o',
+            color=all_colors[i],
+            markersize=30,
+            fillstyle='none',
+            markeredgewidth=5,
+        )
+
+    if save_fig:
+        plt.savefig('../plots/tutorial/cube_stereogram_6.png', dpi=300)
+    if show_fig:
+        plt.show()
+
+    return fig, ax_1, ax_2
+
+
 if __name__ == '__main__':
 
     cube_1 = SimpleCube(scale=1)
@@ -511,6 +603,16 @@ if __name__ == '__main__':
     )
 
     fig, ax_1, ax_2 = draw_cube_stereogram_4(
+        save_fig=True,
+        show_fig=True,
+    )
+
+    fig, ax_1, ax_2 = draw_cube_stereogram_5(
+        save_fig=True,
+        show_fig=True,
+    )
+
+    fig, ax_1, ax_2 = draw_cube_stereogram_6(
         save_fig=True,
         show_fig=True,
     )

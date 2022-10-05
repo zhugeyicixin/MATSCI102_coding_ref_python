@@ -385,13 +385,15 @@ def plot_1d(save_fig=False, show_fig=False):
     circle = mpath.Path.unit_circle()
     verts = np.copy(circle.vertices)
     verts[:, 1] *= 1.618
-    ellipt_marker = mpath.Path(verts, circle.codes)
+    # ellipt_marker = mpath.Path(verts, circle.codes)
+    ellipt_marker = mpath.Path(verts)
 
     rotation_vis_config = {
         'color': op_color,
         'linestyle': 'none',
         'marker': ellipt_marker,
         'markersize': 15,
+        # 'fillstyle': 'none',
     }
     for pt in [
         origin,

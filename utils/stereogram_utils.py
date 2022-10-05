@@ -158,11 +158,13 @@ class Stereogram(GeometryBase):
         self.radius_inner_2 = (np.sqrt(2)-1)*self.radius
         self.angle_arc = 2 * np.arctan(1 / np.sqrt(2)) / np.pi * 180
 
-        self.origin = np.array((0.0, 0.0))
+        # self.origin = np.array((0.0, 0.0))
         self.all_xs, self.all_ys = self._init_grid_xy()
 
         # define keypoints
         self.important_points = {
+            '4567': np.array((0.0, 0.0)),
+            '0123': np.array((0.0, 0.0)),
             '2347': np.array((self.radius, 0.0)),
             '0345': np.array((0.0, self.radius)),
             '0156': np.array((-self.radius, 0.0)),
@@ -190,64 +192,64 @@ class Stereogram(GeometryBase):
         }
 
         self.important_curves = {
-            'origin_47': self._get_points_between_points_on_line_0(
-                self.origin,
+            '47_4567': self._get_points_between_points_on_line_0(
+                self.important_points['4567'],
                 self.important_points['47'],
             ),
             '47_2347': self._get_points_between_points_on_line_0(
                 self.important_points['47'],
                 self.important_points['2347'],
             ),
-            'origin_56': self._get_points_between_points_on_line_0(
-                self.origin,
+            '56_4567': self._get_points_between_points_on_line_0(
+                self.important_points['4567'],
                 self.important_points['56'],
             ),
             '56_0156': self._get_points_between_points_on_line_0(
                 self.important_points['56'],
                 self.important_points['0156'],
             ),
-            'origin_4': self._get_points_between_points_on_line_45(
-                self.origin,
+            '4_4567': self._get_points_between_points_on_line_45(
+                self.important_points['4567'],
                 self.important_points['4'],
             ),
             '4_34': self._get_points_between_points_on_line_45(
                 self.important_points['4'],
                 self.important_points['34'],
             ),
-            'origin_6': self._get_points_between_points_on_line_45(
-                self.origin,
+            '6_4567': self._get_points_between_points_on_line_45(
+                self.important_points['4567'],
                 self.important_points['6'],
             ),
             '6_16': self._get_points_between_points_on_line_45(
                 self.important_points['6'],
                 self.important_points['16'],
             ),
-            'origin_45': self._get_points_between_points_on_line_90(
-                self.origin,
+            '45_4567': self._get_points_between_points_on_line_90(
+                self.important_points['4567'],
                 self.important_points['45'],
             ),
             '45_0345': self._get_points_between_points_on_line_90(
                 self.important_points['45'],
                 self.important_points['0345'],
             ),
-            'origin_67': self._get_points_between_points_on_line_90(
-                self.origin,
+            '67_4567': self._get_points_between_points_on_line_90(
+                self.important_points['4567'],
                 self.important_points['67'],
             ),
             '67_1267': self._get_points_between_points_on_line_90(
                 self.important_points['67'],
                 self.important_points['1267'],
             ),
-            'origin_5': self._get_points_between_points_on_line_135(
-                self.origin,
+            '5_4567': self._get_points_between_points_on_line_135(
+                self.important_points['4567'],
                 self.important_points['5'],
             ),
             '5_05': self._get_points_between_points_on_line_135(
                 self.important_points['5'],
                 self.important_points['05'],
             ),
-            'origin_7': self._get_points_between_points_on_line_135(
-                self.origin,
+            '7_4567': self._get_points_between_points_on_line_135(
+                self.important_points['4567'],
                 self.important_points['7'],
             ),
             '7_27': self._get_points_between_points_on_line_135(
@@ -350,64 +352,64 @@ class Stereogram(GeometryBase):
                 self.important_points['16'],
                 self.important_points['0156'],
             ),
-            'origin_23': self._get_points_between_points_on_line_0(
-                self.origin,
+            '23_0123': self._get_points_between_points_on_line_0(
+                self.important_points['0123'],
                 self.important_points['23'],
             ),
             '23_2347': self._get_points_between_points_on_line_0(
                 self.important_points['23'],
                 self.important_points['2347'],
             ),
-            'origin_01': self._get_points_between_points_on_line_0(
-                self.origin,
+            '01_0123': self._get_points_between_points_on_line_0(
+                self.important_points['0123'],
                 self.important_points['01'],
             ),
             '01_0156': self._get_points_between_points_on_line_0(
                 self.important_points['01'],
                 self.important_points['0156'],
             ),
-            'origin_3': self._get_points_between_points_on_line_45(
-                self.origin,
+            '3_0123': self._get_points_between_points_on_line_45(
+                self.important_points['0123'],
                 self.important_points['3'],
             ),
             '3_34': self._get_points_between_points_on_line_45(
                 self.important_points['3'],
                 self.important_points['34'],
             ),
-            'origin_1': self._get_points_between_points_on_line_45(
-                self.origin,
+            '1_0123': self._get_points_between_points_on_line_45(
+                self.important_points['0123'],
                 self.important_points['1'],
             ),
             '1_16': self._get_points_between_points_on_line_45(
                 self.important_points['1'],
                 self.important_points['16'],
             ),
-            'origin_03': self._get_points_between_points_on_line_90(
-                self.origin,
+            '03_0123': self._get_points_between_points_on_line_90(
+                self.important_points['0123'],
                 self.important_points['03'],
             ),
             '03_0345': self._get_points_between_points_on_line_90(
                 self.important_points['03'],
                 self.important_points['0345'],
             ),
-            'origin_12': self._get_points_between_points_on_line_90(
-                self.origin,
+            '12_0123': self._get_points_between_points_on_line_90(
+                self.important_points['0123'],
                 self.important_points['12'],
             ),
             '12_1267': self._get_points_between_points_on_line_90(
                 self.important_points['12'],
                 self.important_points['1267'],
             ),
-            'origin_0': self._get_points_between_points_on_line_135(
-                self.origin,
+            '0_0123': self._get_points_between_points_on_line_135(
+                self.important_points['0123'],
                 self.important_points['0'],
             ),
             '0_05': self._get_points_between_points_on_line_135(
                 self.important_points['0'],
                 self.important_points['05'],
             ),
-            'origin_2': self._get_points_between_points_on_line_135(
-                self.origin,
+            '2_0123': self._get_points_between_points_on_line_135(
+                self.important_points['0123'],
                 self.important_points['2'],
             ),
             '2_27': self._get_points_between_points_on_line_135(
