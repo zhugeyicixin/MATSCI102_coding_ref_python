@@ -3,7 +3,6 @@ from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 from matplotlib.patches import Arc as plt_Arc
-import seaborn as sns
 
 from utils.stereogram_utils import SimpleCube, Stereogram
 from utils.plot_utils import get_fill_range_2D
