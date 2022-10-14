@@ -107,3 +107,17 @@ def get_reciprocal_vectors_2D(
         * cross_ca / np.dot(vec_b, cross_ca)
     )
     return reciprocal_a, reciprocal_b
+
+
+def get_coordinate_by_combination(
+    pt_coeffs,
+    ref_points,
+):
+    result = None
+    for pt, coeff in pt_coeffs.items():
+        if result is None:
+            result = ref_points[pt]*coeff
+        else:
+            result += ref_points[pt]*coeff
+    return result
+

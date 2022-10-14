@@ -644,8 +644,3 @@ class Stereogram(GeometryBase):
             edges.append(self.important_curves[curve_id])
         return edges
 
-
-
-
-
-
