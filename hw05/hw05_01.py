@@ -174,7 +174,8 @@ def solve_gamma():
     all_dev_gammas_abs = np.abs(all_dev_gammas)
     all_dev_gammas_abs[all_gammas_deg<100] = np.inf
     index_gamma = np.argmin(all_dev_gammas_abs)
-    gamma_opt = all_gammas_deg[index_gamma]
+    gamma_deg_opt = all_gammas_deg[index_gamma]
+    gamma_rad_opt = all_gammas_radian[index_gamma]
 
     fig = plt.figure(
         figsize=(12, 10),
@@ -199,7 +200,7 @@ def solve_gamma():
     plt.savefig('../plots/hw05/q_1a.png', dpi=300)
     plt.show()
 
-    return gamma_opt
+    return gamma_rad_opt
 
 
 
