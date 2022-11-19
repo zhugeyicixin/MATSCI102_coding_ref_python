@@ -124,16 +124,141 @@ def calc_Madelung_NaCl(value_range=100):
     A_1 = A_1.flatten()
     A_1 = np.power(A_1, 0.5)
     A_1 = 1.0 / A_1
+    A_1[np.isinf(A_1)] = 0.0
 
-    # A_2 = ((u+v+1)**2 + (v+w+1)**2 + (w+u+1)**2)/4
-    A_2 = ((u+v)**2 + (v+w)**2 + (w+u+1)**2)/4
+    A_2 = ((u+v+1)**2 + (v+w+1)**2 + (w+u+1)**2)/4
+    # A_2 = ((u+v)**2 + (v+w)**2 + (w+u+1)**2)/4
     A_2 = A_2.flatten()
     A_2 = np.power(A_2, 0.5)
     A_2 = 1.0 / A_2
 
     result = A_1 - A_2
-    result[np.isinf(result)] = 0
-    result = -np.sum(result)/2
+    result = np.sum(result)
+
+    return result
+
+
+def calc_Madelung_KCl_2D(value_range=100):
+    """
+    Seems not correct? Why?
+
+    :param value_range:
+    :return:
+    """
+
+    u_ = np.arange(-value_range, value_range+1, dtype=float)
+    v_ = np.arange(-value_range, value_range+1, dtype=float)
+
+    u, v = np.meshgrid(u_, v_, indexing='ij')
+
+    # assert np.all(u[:, 0, 0] == u_)
+    # assert np.all(v[0, :, 0] == v_)
+    # assert np.all(w[0, 0, :] == w_)
+
+    A_1 = (u**2 + v**2)
+    A_1 = A_1.flatten()
+    A_1 = np.power(A_1, 0.5)
+    A_1 = 1.0 / A_1
+    A_1[np.isinf(A_1)] = 0.0
+
+    # A_2 = ((u+v+1)**2 + (v+w+1)**2 + (w+u+1)**2)/4
+    A_2 = ((u+0.5)**2 + (v+0.5)**2 )
+    A_2 = A_2.flatten()
+    A_2 = np.power(A_2, 0.5)
+    A_2 = 1.0 / A_2
+
+    result = A_1 - A_2
+    result = np.sum(result)
+
+    return result
+
+
+def calc_Madelung_KCl_2D_2(value_range=100):
+    """
+    Seems not correct? Why?
+
+    :param value_range:
+    :return:
+    """
+
+    u_ = np.arange(-value_range, value_range+1, dtype=float)
+    v_ = np.arange(-value_range, value_range+1, dtype=float)
+
+    u, v = np.meshgrid(u_, v_, indexing='ij')
+
+    # assert np.all(u[:, 0, 0] == u_)
+    # assert np.all(v[0, :, 0] == v_)
+    # assert np.all(w[0, 0, :] == w_)
+
+    A_1 = (-1.0)**(u+v)/np.sqrt(u**2 + v**2)
+    A_1 = A_1.flatten()
+    A_1[np.isinf(A_1)] = 0.0
+
+    result = np.sum(A_1)
+
+    return result
+
+
+
+
+
+def calc_LJ_KCl_2D(value_range=100):
+    """
+    Seems not correct? Why?
+
+    :param value_range:
+    :return:
+    """
+
+    u_ = np.arange(-value_range, value_range+1, dtype=float)
+    v_ = np.arange(-value_range, value_range+1, dtype=float)
+
+    u, v = np.meshgrid(u_, v_, indexing='ij')
+
+    # assert np.all(u[:, 0, 0] == u_)
+    # assert np.all(v[0, :, 0] == v_)
+    # assert np.all(w[0, 0, :] == w_)
+
+    A_1 = (u**2 + v**2)
+    A_1 = A_1.flatten()
+    A_1 = np.power(A_1, 6)
+    A_1 = 1.0 / A_1
+    A_1[np.isinf(A_1)] = 0.0
+
+    # A_2 = ((u+v+1)**2 + (v+w+1)**2 + (w+u+1)**2)/4
+    A_2 = ((u+0.5)**2 + (v+0.5)**2 )
+    A_2 = A_2.flatten()
+    A_2 = np.power(A_2, 6)
+    A_2 = 1.0 / A_2
+
+    result = A_1 + A_2
+    result = np.sum(result)
+
+    return result
+
+
+def calc_LJ_KCl_2D_2(value_range=100):
+    """
+    Seems not correct? Why?
+
+    :param value_range:
+    :return:
+    """
+
+    u_ = np.arange(-value_range, value_range+1, dtype=float)
+    v_ = np.arange(-value_range, value_range+1, dtype=float)
+
+    u, v = np.meshgrid(u_, v_, indexing='ij')
+
+    # assert np.all(u[:, 0, 0] == u_)
+    # assert np.all(v[0, :, 0] == v_)
+    # assert np.all(w[0, 0, :] == w_)
+
+    A_1 = 1.0/(u**2 + v**2)**6
+    A_1 = A_1.flatten()
+    A_1[np.isinf(A_1)] = 0.0
+
+    result = np.sum(A_1)
 
     return result
 
@@ -157,53 +282,69 @@ def calc_bond_length_FCC(sigma):
 
 if __name__ == '__main__':
 
-    for r in [1, 2, 3, 5, 10, 20, 30]:
-        result = calc_limit_cubic(power=6, value_range=r)
-        print('r', r, result)
-    print()
+    # for r in [1, 2, 3, 5, 10, 20, 30]:
+    #     result = calc_limit_cubic(power=6, value_range=r)
+    #     print('r', r, result)
+    # print()
+    #
+    # for r in [1, 2, 3, 5, 10, 20, 30]:
+    #     result = calc_limit_cubic(power=3, value_range=r)
+    #     print('r', r, result)
+    # print()
+    #
+    # for r in [1, 2, 3, 5, 10, 20, 30]:
+    #     result = calc_limit_FCC(power=6, value_range=r)
+    #     print('r', r, result)
+    # print()
+    #
+    # for r in [1, 2, 3, 5, 10, 20, 30]:
+    #     result = calc_limit_FCC(power=3, value_range=r)
+    #     print('r', r, result)
+    # print()
 
-    for r in [1, 2, 3, 5, 10, 20, 30]:
-        result = calc_limit_cubic(power=3, value_range=r)
-        print('r', r, result)
-    print()
+    # for r in [1, 2, 3, 5, 10, 20, 30]:
+    #     result = calc_limit_NaCl(power=6, value_range=r)
+    #     print('r', r, result)
+    # print()
+    #
+    # for r in [1, 2, 3, 5, 10, 20, 30]:
+    #     result = calc_limit_NaCl_2(power=6, value_range=r)
+    #     print('r', r, result)
+    # print()
+    #
+    # for r in [1, 2, 3, 5, 10, 20, 30]:
+    #     result = calc_limit_NaCl(power=3, value_range=r)
+    #     print('r', r, result)
+    # print()
+    #
+    # for r in [1, 2, 3, 5, 10, 20, 30]:
+    #     result = calc_limit_NaCl_2(power=3, value_range=r)
+    #     print('r', r, result)
+    # print()
 
-    for r in [1, 2, 3, 5, 10, 20, 30]:
-        result = calc_limit_FCC(power=6, value_range=r)
-        print('r', r, result)
-    print()
+    # for s in [2.74, 3.40, 3.65, 3.98]:
+    #     bond = calc_bond_length_cubic(sigma=s)
+    #     print('bond', bond)
+    # print()
+    #
+    # for s in [2.74, 3.40, 3.65, 3.98]:
+    #     bond = calc_bond_length_FCC(sigma=s)
+    #     print('bond', bond)
+    # print()
 
-    for r in [1, 2, 3, 5, 10, 20, 30]:
-        result = calc_limit_FCC(power=3, value_range=r)
-        print('r', r, result)
-    print()
+    # for r in [1, 2, 3, 5, 10, 20, 30, 50, 100, ]:
+    #     result_1 = calc_Madelung_NaCl(value_range=r)
+    #     print('r', r, result_1/2,)
+    # print()
 
-    for r in [1, 2, 3, 5, 10, 20, 30]:
-        result = calc_limit_NaCl(power=6, value_range=r)
-        print('r', r, result)
-    print()
+    # for r in [1, 2, 3, 5, 10, 20, 30, 50, 100, 500, 1000, 5000, 10000]:
+    #     result_1 = calc_Madelung_KCl_2D(value_range=r)
+    #     result_2 = calc_Madelung_KCl_2D_2(value_range=r)
+    #     print('r', r, result_1/np.sqrt(2), result_2)
+    # print()
 
-    for r in [1, 2, 3, 5, 10, 20, 30]:
-        result = calc_limit_NaCl_2(power=6, value_range=r)
-        print('r', r, result)
+    for r in [1, 2, 3, 5, 10, 20, 30, 50, 100, ]:
+        result_1 = calc_LJ_KCl_2D(value_range=r)
+        result_2 = calc_LJ_KCl_2D_2(value_range=r)
+        print('r', r, result_1, result_2*2**6)
     print()
-
-    for r in [1, 2, 3, 5, 10, 20, 30]:
-        result = calc_limit_NaCl(power=3, value_range=r)
-        print('r', r, result)
-    print()
-
-    for r in [1, 2, 3, 5, 10, 20, 30]:
-        result = calc_limit_NaCl_2(power=3, value_range=r)
-        print('r', r, result)
-    print()
-
-    for s in [2.74, 3.40, 3.65, 3.98]:
-        bond = calc_bond_length_cubic(sigma=s)
-        print('bond', bond)
-    print()
-
-    for s in [2.74, 3.40, 3.65, 3.98]:
-        bond = calc_bond_length_FCC(sigma=s)
-        print('bond', bond)
-    print()
-
